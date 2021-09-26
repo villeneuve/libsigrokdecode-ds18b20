@@ -23,19 +23,22 @@
 import sigrokdecode as srd
 import struct
 
-# Dictionary of FUNCTION commands and their names.
+# Dictionary of commands and their names.
 command = {
-    # Scratchpad
+    # ROM commands
+    0xf0: 'Search ROM',
+    0x33: 'Read ROM',
+    0x55: 'Match ROM',
+    0xcc: 'Skip ROM',
+    0xec: 'Alarm search',
+
+    # Function commands
+    0x44: 'Convert temperature',
     0x4e: 'Write scratchpad',
     0xbe: 'Read scratchpad',
     0x48: 'Copy scratchpad',
-    # Thermometer
-    0x44: 'Convert temperature',
-    0xb4: 'Read power mode',
     0xb8: 'Recall EEPROM',
-    0xf5: 'PIO access read',
-    0xA5: 'PIO access write',
-    0x99: 'Chain',
+    0xb4: 'Read power supply',
 }
 
 class Decoder(srd.Decoder):
@@ -66,6 +69,7 @@ class Decoder(srd.Decoder):
         self.temperature = 0
         self.th = 0
         self.tl = 0
+        self.resolution = ''
 
     def start(self):
         self.out_ann = self.register(srd.OUTPUT_ANN)
@@ -88,7 +92,7 @@ class Decoder(srd.Decoder):
             self.putx([0, ['ROM: 0x%016x' % (val)]])
             self.state = 'COMMAND'
         elif code == 'DATA':
-            if self.state == 'COMMAND':
+            if self.state == 'COMMAND' or self.state == 'ROM':
                 if val not in command:
                     self.putx([0, ['Unrecognized command: 0x%02x' % val]])
                     return
@@ -109,11 +113,23 @@ class Decoder(srd.Decoder):
                     # High and low alarm thresholds are stored as a signed char (8 bits) number is the scratchpad 
                     self.th = struct.unpack('b', struct.pack('B', self.scratchpad[2]))[0]
                     self.tl = struct.unpack('b', struct.pack('B', self.scratchpad[3]))[0]
-                    self.putx([0, ['Temperature: %0.4f°C, TH: %i, TL: %i' % (self.temperature, self.th,  self.tl)]])
+                    if self.scratchpad[4] ==   0b0011111:
+                        self.resolution = '9 bits'
+                    elif self.scratchpad[4] == 0b0111111:
+                        self.resolution = '10 bits'
+                    elif self.scratchpad[4] == 0b1011111:
+                        self.resolution = '11 bits'
+                    elif self.scratchpad[4] == 0b1111111:
+                        self.resolution = '12 bits'
+                    else:
+                        self.resolution  = '??'
+                    self.putx([0, ['Temperature: %0.4f°C, TH: %i, TL: %i, Resolution: %s' % (self.temperature, self.th,  self.tl, self.resolution)]])
                     # self.putx([0, ['Temperature: %0.4f°C, TH: %i, TL: %i' % (self.temperature, self.th,  self.tl)]])
                 else:
                     self.putx([0, ['Scratchpad byte %s= 0x%02x' % ((self.scratchpad_index-1), val)]])
             elif self.state == 'CONVERT TEMPERATURE':
                 self.putx([0, ['Temperature conversion status: 0x%02x' % val]])
+            elif self.state == 'WRITE SCRATCHPAD':
+                self.putx([0, ['Writing: 0x%02x' % val]])
             elif self.state in [s.upper() for s in command.values()]:
                 self.putx([0, ['TODO \'%s\': 0x%02x' % (self.state, val)]])
