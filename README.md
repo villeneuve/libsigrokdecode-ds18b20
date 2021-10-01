@@ -7,7 +7,7 @@ This DS18B20 decoder is made from DS28EA00 decoder
 Original DS28EA00 decoder made by Iztok Jeras
 DS28EA00 and DS18B20 share many commands so this decoder should be usable with DS28EA00 as well.
 
-https://github.com/villeneuve/libsigrokdecode-ds18b20/blob/main/screenshots/Screenshot%202021-10-01%2014.06.33.png
+ <img src="https://github.com/villeneuve/libsigrokdecode-ds18b20/blob/main/screenshots/Screenshot%202021-10-01%2014.06.33.png">
 
 The DS18B20 is a very popular 1wire temperature sensor
 This decoder decodes the 1wire protocol showing:
