@@ -29,7 +29,7 @@ GND to logic analyzer GND
 DQ to logic analyzer channel 0 thru 1k resistor
 
 The Arduino sketch is an almost an Arduino standard one.
-It's also here: 
+It's here: 
 https://github.com/villeneuve/libsigrokdecode-ds18b20/blob/main/dumps/arduino_simple/EssaiDS18B20_2.ino
 
 The communication is as following:
