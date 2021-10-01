@@ -25,7 +25,12 @@ Two DS18B20 are on connected in // : GND to GND, DQ to DQ, VCC to VCC
 one 4k7 resistor between VCC and DQ
 VCC to Arduino Uno 3.3V
 GND to Arduino Uno GND
-DQ to Arduino Uno Pin 
+DQ to Arduino Uno Pin 10
+GND to logic analyzer GND
+DQ to logic analyzer channel 0
+
+The Arduino sketch is an almost an Arduino standard one.
+It's also here: 
 
 Two DS18D20 sensors are connected to the 1-Wire bus with following ROM codes:
 
