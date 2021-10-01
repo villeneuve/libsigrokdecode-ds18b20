@@ -1,0 +1,61 @@
+-------------------------------------------------------------------------------
+Dallas DS18B20 1-Wire digital temperature sensor
+-------------------------------------------------------------------------------
+
+This is a capture example of the 1-Wire traffic from Maxim DS18B20
+temperature sensor.
+
+Details:
+https://datasheets.maximintegrated.com/en/ds/DS18B20.pdf
+
+Logic analyzer setup
+--------------------
+
+The logic analyzer used was a Saleae Logic clone (at 8 MHz):
+
+The capture was made directly from PulseView with these settings:
+- Channel 0, 1MHz, 2MS
+- trigger to falling edge and pre-trigger ratio to 1%
+
+
+
+
+
+
+
+------------
+
+Two DS18D20 sensors are connected to the 1-Wire bus with following ROM codes:
+
+ - 0x8d011627f794ee28
+   (family code: 0x28, serial number: 0x011627f794ee, CRC: 0x8d)
+ - 0x330216255487ee28
+   (family code: 0x28, serial number: 0x0216255487ee, CRC: 0x33)
+
+The sensors have the same following marking:
+
+  Dallas
+  18B20
+  1619C4
+  +827AH
+
+The communication is initiated by a custom 1-Wire master software
+implementation for a STM32F103C8 using timers.
+
+The master performs the following actions:
+
+ - Use Search ROM command to enumerate all 1-Wire devices on the bus so to
+   count the number of DS10B20 sensors on the bus (two).
+ - Restart enumeration of each device using the Search ROM command so to store
+   their ROM code. After enumeration of each device:
+   - Use Match ROM command to select device.
+   - Use Read Scratchpad function command to read the 9 scratchpad bytes.
+   - Use Write Scratchpad function command to write 3 bytes, setting the
+     temperature conversion precision to 9 bits.
+   - Use the Copy Scratchpad function command to copy the scratchpad into
+     the device's internal EEPROM.
+ - Use Skip ROM command to address all devices.
+ - Use Convert T function command to start temperature conversion.
+ - After one second use Match ROM and Read Scratchpad commands on each device
+   to read the temperature stored in the scratchpad.
+ - After 1 second use Skip ROM and Convert T commands to start next conversion.
