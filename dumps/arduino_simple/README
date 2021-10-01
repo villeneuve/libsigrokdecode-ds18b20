@@ -31,6 +31,7 @@ DQ to logic analyzer channel 0
 
 The Arduino sketch is an almost an Arduino standard one.
 It's also here: 
+https://github.com/villeneuve/libsigrokdecode-ds18b20/blob/main/dumps/arduino_simple/EssaiDS18B20_2.ino
 
 Two DS18D20 sensors are connected to the 1-Wire bus with following ROM codes:
 
