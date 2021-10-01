@@ -28,7 +28,7 @@ DQ to Arduino Uno Pin 10
 GND to logic analyzer GND
 1k resistor between DQ and logic analyzer channel 0
 
-The Arduino sketch is an almost an Arduino standard one.
+The Arduino sketch is almost an Arduino standard one.
 It's here: 
 https://github.com/villeneuve/libsigrokdecode-ds18b20/blob/main/dumps/arduino_simple/EssaiDS18B20_2.ino
 
