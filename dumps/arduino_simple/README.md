@@ -54,4 +54,4 @@ The communication is as following:
  - Slave 0x460217b07617ff28 answers with 8 bytes (T°=19.625°C)
  - Master sends a Reset
  
- <img src="https://github.com/villeneuve/libsigrokdecode-ds18b20/blob/main/screenshots/Screenshot%202021-10-01%2014.06.33.png">
+ <img src="https://github.com/villeneuve/libsigrokdecode-ds18b20/blob/main/screenshots/Screenshot 2021-10-02 11.40.04.png">
