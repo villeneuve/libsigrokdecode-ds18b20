@@ -67,7 +67,9 @@ Search ROM: got one!.. ROM = 28 FF 17 76 B0 17 2 46
 No more addresses.  
 Added Guy delay 10s...  
 
-Here under a screenshot of a portion of the capture with the 3 decoders stacked (1wire link layer, 1wire network layer, ds18b20):  
+Here under a screenshot of a portion of the capture:
+----------------------------------------------------
+with the 3 decoders stacked (1wire link layer, 1wire network layer, ds18b20):  
 
  
  <img src="https://github.com/villeneuve/libsigrokdecode-ds18b20/blob/main/screenshots/Screenshot 2021-10-02 11.40.04.png">
