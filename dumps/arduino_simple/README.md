@@ -20,7 +20,8 @@ And then saving the file: DS18B20_2u_Arduino_1MHz_2MS_trigger.sr
 Hardware setup:
 --------------
 
-Two DS18B20 are connected in // : GND to GND, DQ to DQ, VCC to VCC  
+Two DS18B20 are connected in // :  
+GND to GND, DQ to DQ, VCC to VCC  
 one 4k7 resistor between VCC and DQ  
 VCC to Arduino Uno 3.3V  
 GND to Arduino Uno GND  
