@@ -53,5 +53,21 @@ The communication is as following:
  - Master sends a Read Scatchpad command
  - Slave 0x460217b07617ff28 answers with 8 bytes (T°=19.625°C)
  - Master sends a Reset
+
+Here under an exemple of the output of the Arduino in a terminal:
+-----------------------------------------------------------------
+Search ROM: got one!.. ROM = 28 FF 6E 38 50 17 4 37
+  Chip = DS18B20
+  Data = 1 3C 1 4B 46 7F FF C 10 36  CRC=36
+  Temperature = 19.75 Celsius, 67.55 Fahrenheit
+Search ROM: got one!.. ROM = 28 FF 17 76 B0 17 2 46
+  Chip = DS18B20
+  Data = 1 40 1 20 FF 1F FF 0 10 E6  CRC=E6
+  Temperature = 20.00 Celsius, 68.00 Fahrenheit
+No more addresses.
+Added Guy delay 10s...
+
+Here under a screenshot of a portion of the capture with the 3 decoders stacked (1wire link layer, 1wire network layer, ds18b20):
+---------------------------------------------------------------------------------------------------------------------------------
  
  <img src="https://github.com/villeneuve/libsigrokdecode-ds18b20/blob/main/screenshots/Screenshot 2021-10-02 11.40.04.png">
