@@ -20,16 +20,16 @@ And then saving the file: DS18B20_2u_Arduino_1MHz_2MS_trigger.sr
 Hardware setup:
 --------------
 
-Two DS18B20 are connected in // : GND to GND, DQ to DQ, VCC to VCC
-one 4k7 resistor between VCC and DQ
-VCC to Arduino Uno 3.3V
-GND to Arduino Uno GND
-DQ to Arduino Uno Pin 10
-GND to logic analyzer GND
-1k resistor between DQ and logic analyzer channel 0
+Two DS18B20 are connected in // : GND to GND, DQ to DQ, VCC to VCC  
+one 4k7 resistor between VCC and DQ  
+VCC to Arduino Uno 3.3V  
+GND to Arduino Uno GND  
+DQ to Arduino Uno Pin 10  
+GND to logic analyzer GND  
+1k resistor between DQ and logic analyzer channel 0  
 
-The Arduino sketch is almost an Arduino standard one.
-It's here: 
+The Arduino sketch is almost an Arduino standard one.  
+It's here:  
 https://github.com/villeneuve/libsigrokdecode-ds18b20/blob/main/dumps/arduino_simple/EssaiDS18B20_2.ino
 
 The communication is as following:
