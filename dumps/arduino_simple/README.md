@@ -54,7 +54,7 @@ The communication is as following:
  - Slave 0x460217b07617ff28 answers with 8 bytes (T°=19.625°C)
  - Master sends a Reset
 
-Here under an exemple of the output of the Arduino in a terminal:
+Here under an example of the output of the Arduino in a terminal:
 -----------------------------------------------------------------
 Search ROM: got one!.. ROM = 28 FF 6E 38 50 17 4 37  
   Chip = DS18B20  
