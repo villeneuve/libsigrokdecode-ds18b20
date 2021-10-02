@@ -13,7 +13,7 @@ Logic analyzer setup
 The logic analyzer used was a Saleae Logic 8MHz clone.
 
 The capture was made directly from PulseView with these settings:
-- Channel 0, 1MHz, 2MS  
+- Channel 0, 1MHz, 2MS
 - trigger to falling edge  
 And then saving the file: DS18B20_2u_Arduino_1MHz_2MS_trigger.sr
 
