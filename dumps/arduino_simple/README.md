@@ -42,7 +42,7 @@ The communication is as following:
  - Master sends a Reset
  - Master sends a Match ROM command followed by this ROM 0x37041750386eff28
  - Master sends a Read Scatchpad command
- - Slave 0x37041750386eff28 answers with 8 bytes (T°=19.4375°C)
+ - Slave 0x37041750386eff28 answers with 9 bytes (T°=19.4375°C)
  - Master sends 2 Resets then a Search ROM command to continue to enumerate all 1-Wire devices
  - Master-slaves communication ends with ROM found : 0x460217b07617ff28 (28 is DS18B20 family code)
  - Master sends a Match ROM command followed by this ROM 0x460217b07617ff28
@@ -51,7 +51,7 @@ The communication is as following:
  - Master sends a Reset
  - Master sends a Match ROM command followed by this ROM 0x460217b07617ff28
  - Master sends a Read Scatchpad command
- - Slave 0x460217b07617ff28 answers with 8 bytes (T°=19.625°C)
+ - Slave 0x460217b07617ff28 answers with 9 bytes (T°=19.625°C)
  - Master sends a Reset
 
 Here under an example of the output of the Arduino in a terminal:
