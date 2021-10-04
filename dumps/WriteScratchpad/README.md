@@ -55,10 +55,10 @@ The communication is as following:
 Here under the output of the Arduino software in a terminal:
 ------------------------------------------------------------
 
-Wait 10s before starting
-Go!
-Data = 50 5 4A 47 7F FF 7F 10 5  CRC=5
-Data = 50 5 22 FE 3F FF 3F 10 A0  CRC=A0
+Wait 10s before starting  
+Go!  
+Data = 50 5 4A 47 7F FF 7F 10 5  CRC=5  
+Data = 50 5 22 FE 3F FF 3F 10 A0  CRC=A0  
 
 Here under a screenshot of a portion of the capture:
 ----------------------------------------------------
