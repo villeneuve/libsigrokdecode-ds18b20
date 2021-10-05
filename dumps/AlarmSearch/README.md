@@ -2,8 +2,8 @@
 Dallas DS18B20 1-Wire digital temperature sensor
 -------------------------------------------------------------------------------
 
-This is a capture example of the 1-Wire traffic from Maxim DS18B20 temperature sensor.
-This example is about the Alarm search (0xEC) ROM COMMAND
+This is a capture example of the 1-Wire traffic from Maxim DS18B20 temperature sensor.  
+This example is about the Alarm search (0xEC) ROM COMMAND  
 
 Details:
 https://datasheets.maximintegrated.com/en/ds/DS18B20.pdf
