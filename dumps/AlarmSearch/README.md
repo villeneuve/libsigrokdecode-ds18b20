@@ -17,7 +17,7 @@ The capture was made directly from PulseView with these settings:
 - Channel 0, 1MHz, 500kS  
 - trigger to falling edge  
 - pre-trigger capture ratio = 1%  
-And then saving the file: DS18B20_1u_Arduino_WriteScratchpad.sr  
+And then saving the file: DS18B20_1u_Arduino_AlarmSearch.sr  
 
 Hardware setup:
 --------------
