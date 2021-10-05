@@ -35,8 +35,8 @@ The only change is this line:
  if ( !ds.search(addr))  
  replaced by  
  if ( !ds.search(addr, 0))  // The 0 (False) will start a conditional search instead of normal search  
- The sketch is here: 
-https://github.com/villeneuve/libsigrokdecode-ds18b20/blob/main/dumps/ TODO!!!!!!!!!!!!!!!!!!!!  
+ The sketch is here:  
+ https://github.com/villeneuve/libsigrokdecode-ds18b20/blob/main/dumps/AlarmSearch/TestDS18B20_2_AlarmSearch.ino   
 
 The communication is as following:
  - Master sends a Reset (this falling edge triggers the PulseView record)
