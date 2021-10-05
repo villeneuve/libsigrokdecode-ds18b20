@@ -2,8 +2,8 @@
 Dallas DS18B20 1-Wire digital temperature sensor
 -------------------------------------------------------------------------------
 
-This is a capture example of the 1-Wire traffic from Maxim DS18B20 temperature sensor.
-This example is the 'Read ROM' ROM Command (0x33)
+This is a capture example of the 1-Wire traffic from Maxim DS18B20 temperature sensor.  
+This example is the 'Read ROM' ROM Command (0x33)  
 No more than 1 device must be on the bus!
 
 Details:
