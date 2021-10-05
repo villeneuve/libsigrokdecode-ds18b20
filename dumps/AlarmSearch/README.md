@@ -13,30 +13,30 @@ Logic analyzer setup
 
 The logic analyzer used was a Saleae Logic 8MHz clone.
 
-The capture was made directly from PulseView with these settings:
-- Channel 0, 1MHz, 500kS
+The capture was made directly from PulseView with these settings:  
+- Channel 0, 1MHz, 500kS  
 - trigger to falling edge  
-- pre-trigger capture ratio = 1%
-And then saving the file: DS18B20_1u_Arduino_WriteScratchpad.sr
+- pre-trigger capture ratio = 1%  
+And then saving the file: DS18B20_1u_Arduino_WriteScratchpad.sr  
 
 Hardware setup:
 --------------
 
-Two DS18B20 are connected in // : GND to GND, DQ to DQ, VCC to VCC
-one 4k7 resistor between VCC and DQ
-VCC to Arduino Uno 3.3V
-GND to Arduino Uno GND
-DQ to Arduino Uno Pin 10
-GND to logic analyzer GND
-1k resistor between DQ and logic analyzer channel 0
+Two DS18B20 are connected in // : GND to GND, DQ to DQ, VCC to VCC  
+one 4k7 resistor between VCC and DQ  
+VCC to Arduino Uno 3.3V  
+GND to Arduino Uno GND  
+DQ to Arduino Uno Pin 10  
+GND to logic analyzer GND  
+1k resistor between DQ and logic analyzer channel 0  
  
-The Arduino sketch is almost an Arduino standard one. The same as the GetTemperature example.
-The only change is this line:
- if ( !ds.search(addr)) 
- replaced by 
- if ( !ds.search(addr, 0))  // The 0 (False) will start a conditional search instead of normal search
+The Arduino sketch is almost an Arduino standard one. The same as the GetTemperature example.  
+The only change is this line:  
+ if ( !ds.search(addr))  
+ replaced by  
+ if ( !ds.search(addr, 0))  // The 0 (False) will start a conditional search instead of normal search  
  The sketch is here: 
-https://github.com/villeneuve/libsigrokdecode-ds18b20/blob/main/dumps/ TODO!!!!!!!!!!!!!!!!!!!!
+https://github.com/villeneuve/libsigrokdecode-ds18b20/blob/main/dumps/ TODO!!!!!!!!!!!!!!!!!!!!  
 
 The communication is as following:
  - Master sends a Reset (this falling edge triggers the PulseView record)
@@ -58,12 +58,12 @@ The communication is as following:
 Here under the output of the Arduino software in a terminal:
 ------------------------------------------------------------
 
-Search ROM: got one!.. ROM = 28 FF 17 76 B0 17 2 46
-  Chip = DS18B20
-  Data = 1 40 1 1F 1B 1F FF 1F 10 1E  CRC=1E
-  Temperature = 20.00 Celsius, 68.00 Fahrenheit
-No more addresses.
-Added Guy delay 10s...
+Search ROM: got one!.. ROM = 28 FF 17 76 B0 17 2 46  
+  Chip = DS18B20  
+  Data = 1 40 1 1F 1B 1F FF 1F 10 1E  CRC=1E  
+  Temperature = 20.00 Celsius, 68.00 Fahrenheit  
+No more addresses.  
+Added Guy delay 10s...  
 
 Here under a screenshot of a portion of the capture:
 ----------------------------------------------------
