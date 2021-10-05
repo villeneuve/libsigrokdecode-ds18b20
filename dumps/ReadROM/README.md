@@ -32,7 +32,7 @@ GND to logic analyzer GND
 1k resistor between DQ and logic analyzer channel 0  
 
 The Arduino sketch is here:  
-https://github.com/villeneuve/libsigrokdecode-ds18b20/blob/main/dumps/ TODO!!!!!!!!!!!!!!!!!!!!
+https://github.com/villeneuve/libsigrokdecode-ds18b20/blob/main/dumps/ReadROM/TestDS18B20_ReadRom.ino  
 
 The communication is as following:
  - Master sends a Reset (this falling edge triggers the PulseView record)
