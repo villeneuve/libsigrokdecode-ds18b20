@@ -42,10 +42,10 @@ The communication is as following:
 Here under the output of the Arduino software in a terminal:
 ------------------------------------------------------------
 
-Wait 10s before starting
-Go!
-ROM=28 FF 6E 38 50 17 4 37  CRC=37
-Done!
+Wait 10s before starting  
+Go!  
+ROM=28 FF 6E 38 50 17 4 37  CRC=37  
+Done!  
 
 Here under a screenshot of a portion of the capture:
 ----------------------------------------------------
