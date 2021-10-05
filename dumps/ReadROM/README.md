@@ -17,7 +17,7 @@ The logic analyzer used was a Saleae Logic 8MHz clone.
 The capture was made directly from PulseView with these settings:
 - Channel 0, 1MHz, 200kS
 - trigger to falling edge  
-- pre-trigger capture ratio = 1%
+- pre-trigger capture ratio = 1%  
 And then saving the file: DS18B20_1u_Arduino_ReadROM.sr
 
 Hardware setup:
