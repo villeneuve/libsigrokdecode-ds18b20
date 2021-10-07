@@ -21,12 +21,12 @@ And then saving the file: DS18S20_1u_Arduino_GetTemperature.sr
 Hardware setup:
 --------------
 
-Only one DS18S20 is connected: one 4k7 resistor between VCC and DQ
-VCC to Arduino Uno 3.3V
-GND to Arduino Uno GND
-DQ to Arduino Uno Pin 10
-GND to logic analyzer GND
-1k resistor between DQ and logic analyzer channel 0
+Only one DS18S20 is connected: one 4k7 resistor between VCC and DQ  
+VCC to Arduino Uno 3.3V  
+GND to Arduino Uno GND  
+DQ to Arduino Uno Pin 10  
+GND to logic analyzer GND  
+1k resistor between DQ and logic analyzer channel 0  
 
 The Arduino sketch is almost an Arduino standard one.  
 It's here:  
