@@ -30,7 +30,7 @@ GND to logic analyzer GND
 
 The Arduino sketch is almost an Arduino standard one.  
 It's here:  
-https://github.com/villeneuve/libsigrokdecode-ds18b20/blob/main/dumps/GetTemperature/EssaiDS18B20_2.ino
+https://github.com/villeneuve/libsigrokdecode-ds18b20/blob/main/dumps/ds18s20_GetTemperature/EssaiDS18B20_2.ino
 
 The communication is as following:
  - Master sends a Reset (to trigger the record)
