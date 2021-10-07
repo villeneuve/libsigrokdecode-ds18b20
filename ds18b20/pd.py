@@ -38,7 +38,16 @@ command = {
     0xbe: 'Read scratchpad',
     0x48: 'Copy scratchpad',
     0xb8: 'Recall EEPROM',
-    0xb4: 'Read power supply',
+    0xb4: 'Read power supply'
+}
+
+# Dictionary of devices family code (Devices supported by this decoder)
+family = {
+    0x22: 'DS1822',
+    0x3B: 'DS1825',
+    0x10: 'DS18S20',
+    0x28: 'DS18B20',
+    0x42: 'DS28EA00'
 }
 
 class Decoder(srd.Decoder):
@@ -60,8 +69,8 @@ class Decoder(srd.Decoder):
     def reset(self):
         self.trn_beg = 0
         self.trn_end = 0
-        self.state = 'ROM'
-        self.rom = 0x0000000000000000
+        self.state = 'INIT'
+        self.device = '??'
         
     def reset_scratchpad(self):
         self.scratchpad = [0,0,0,0,0,0,0,0,0]
@@ -69,7 +78,7 @@ class Decoder(srd.Decoder):
         self.temperature = 0
         self.th = 0
         self.tl = 0
-        self.resolution = ''
+        self.resolution = '??'
 
     def start(self):
         self.out_ann = self.register(srd.OUTPUT_ANN)
@@ -81,18 +90,21 @@ class Decoder(srd.Decoder):
         code, val = data
 
         self.ss, self.es = ss, es
-
-        # State machine.
+        
         if code == 'RESET/PRESENCE':
             self.putx([0, ['Reset/presence: %s'
                            % ('true' if val else 'false')]])
-            self.state = 'ROM'
+            self.state = 'INIT'
         elif code == 'ROM':
-            self.rom = val
-            self.putx([0, ['ROM: 0x%016x' % (val)]])
-            self.state = 'COMMAND'
+            # Let's put the ROM number in correct order
+            rom_str = ' '.join(format(x, '02X') for x in (val).to_bytes(8, byteorder='little'))
+            family_code = int(rom_str[0:2], 16)
+            if family_code in family:
+                self.device = family[family_code]
+            self.putx([0, ['ROM: %s CRC=%s Family:%s=%s' % (rom_str, rom_str[-2:], rom_str[0:2], self.device)]])
+            self.state = 'INIT' 
         elif code == 'DATA':
-            if self.state == 'COMMAND' or self.state == 'ROM':
+            if self.state == 'INIT':
                 if val not in command:
                     self.putx([0, ['Unrecognized command: 0x%02x' % val]])
                     return
@@ -104,12 +116,17 @@ class Decoder(srd.Decoder):
                     # to understand each byte meaning refer to https://datasheets.maximintegrated.com/en/ds/DS18B20.pdf
                     # Byte#0 temperature LSB, #1 MSB, #2 TH, #3 TL, #4 config register, #8 CRC
             elif self.state == 'READ SCRATCHPAD':
+                if self.scratchpad_index >= 9:  # Happen only if bus master fails to reset the bus after reading the scratchpad
+                    return
                 self.scratchpad[ self.scratchpad_index] = val
                 self.scratchpad_index +=1
                 if self.scratchpad_index == 9:
-                    # temperature conversion: as per DS18B20 datasheet: data is stored as a 16-bit sign-extended two’s complement number
+                    # temperature conversion: as per Maxim datasheet: data is stored as a 16-bit sign-extended two’s complement number
                     # here under calculation successfully tested with positive and negative temperatures
-                    self.temperature = struct.unpack('h', struct.pack('BB', self.scratchpad[0],self.scratchpad[1]))[0] * 0.0625
+                    if self.device != 'DS18S20':
+                        self.temperature = struct.unpack('h', struct.pack('BB', self.scratchpad[0],self.scratchpad[1]))[0] * 0.0625
+                    else:
+                        self.temperature = struct.unpack('h', struct.pack('BB', self.scratchpad[0],self.scratchpad[1]))[0] * 0.5 
                     # High and low alarm thresholds are stored as a signed char (8 bits) number is the scratchpad 
                     self.th = struct.unpack('b', struct.pack('B', self.scratchpad[2]))[0]
                     self.tl = struct.unpack('b', struct.pack('B', self.scratchpad[3]))[0]
@@ -121,15 +138,18 @@ class Decoder(srd.Decoder):
                         self.resolution = '11 bits'
                     elif self.scratchpad[4] == 0b1111111:
                         self.resolution = '12 bits'
-                    else:
-                        self.resolution  = '??'
+                    elif self.device == 'DS18S20':
+                        self.resolution = '9 bits'  # DS18S20 is not configurable, fixed 9 bits
                     self.putx([0, ['Temperature: %0.4f°C, TH: %i, TL: %i, Resolution: %s' % (self.temperature, self.th,  self.tl, self.resolution)]])
-                    # self.putx([0, ['Temperature: %0.4f°C, TH: %i, TL: %i' % (self.temperature, self.th,  self.tl)]])
                 else:
                     self.putx([0, ['Scratchpad byte %s= 0x%02x' % ((self.scratchpad_index-1), val)]])
             elif self.state == 'CONVERT TEMPERATURE':
-                self.putx([0, ['Temperature conversion status: 0x%02x' % val]])
-            elif self.state == 'WRITE SCRATCHPAD':
+                if val == 0:
+                    self.putx([0, ['Temperature conversion status=0 Not yet ready']])
+                else:
+                    # We will be very lucky if we see the following message one day,
+                    # because we don't receive the bit states (from 1wire-link-layer decoder). we receive only bytes. 
+                    # so as the bus master is waiting a bit=1. We'll see it only if it's the byte's 8th bit!
+                    self.putx([0, ['Temperature conversion status!=0 READY']])
+            elif self.state == 'WRITE SCRATCHPAD':   # Bus master MUST write 3 bytes (see satasheet). A bus reset will come after.
                 self.putx([0, ['Writing: 0x%02x' % val]])
-            elif self.state in [s.upper() for s in command.values()]:
-                self.putx([0, ['TODO \'%s\': 0x%02x' % (self.state, val)]])
