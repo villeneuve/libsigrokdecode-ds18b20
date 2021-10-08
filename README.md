@@ -33,3 +33,5 @@ The dumps are saved PulseView captures (*sr files) and can be open in PulseView 
 The dumps are demonstrating 5 different one-wire commands:  
 DS18B20: read scratchpad (and get temperature), read ROM, write scratchpad, search alarm  
 DS18S20: read scratchpad (and get temperature)  
+In each folder the README.md is explaining hardware, software and the result  
+
