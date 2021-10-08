@@ -29,3 +29,7 @@ ds18b20-1: Temperature: 22.5000°C, TH: 32, TL: -1, Resolution: 9 bits
 ds18b20-1: Temperature: 22.0000°C, TH: 75, TL: 70, Resolution: 12 bits  
 
 Dumps are provided in the dumps folder.
+The dumps are saved PulseView captures (*sr files) and can be open in PulseView (open file)
+The dumps are demonstrating 5 different one-wire commands: 
+DS18B20: read scratchpad (and get temperature), read ROM, write scratchpad, search alarm  
+DS18S20: read scratchpad (and get temperature)  
