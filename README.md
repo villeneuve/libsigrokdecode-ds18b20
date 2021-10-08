@@ -35,4 +35,5 @@ DS18B20: read scratchpad (and get temperature), read ROM, write scratchpad, sear
 DS18S20: read scratchpad (and get temperature)  
 In each folder the README.md is explaining hardware, software and the result  
 
-To use this decoder just copy the ds18b20 folder and its content in your /usr/share/libsigrokdecode/decoders/ folder (root owner and group)
+To use this decoder just copy the ds18b20 folder and its content in your /usr/share/libsigrokdecode/decoders/ folder (root owner and group)  
+And restart PulseView  
