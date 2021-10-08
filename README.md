@@ -2,8 +2,8 @@
 This is a decoder. A sigrok/PulseView onewire DS18B20 decoder  
 
 It stacks on top of the 'onewire_network' PD and decodes the Maxim 1-Wire digital thermometers protocol.  
-The DS18B20 is a very popular 1wire temperature sensor.  
-However this decoder works for several devices: DS1822, DS1825, DS18S20, DS18B20, DS28EA00
+The decoders works the very popular DS18B20 1wire temperature sensor, but not only. 
+It works for several devices: DS1822, DS1825, DS18S20, DS18B20, DS28EA00
 This decoder is forked from DS28EA00 decoder made by Iztok Jeras  
 
 It decodes data to give information such as temperature, high and low alarm thresholds, resolution. As shown on the below sceenshot:
