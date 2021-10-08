@@ -24,9 +24,9 @@ This decoder gives more information, it decodes the 1wire protocol showing:
 
 It works with sigrok-cli as well.   
 Example:  
-$ sigrok-cli --driver fx2lafw --config samplerate=1000000 --channels D0 --samples 2000000 --wait-trigger --triggers D0=f -P onewire_link,onewire_network,ds18b20 | grep Temperature  
+*$ sigrok-cli --driver fx2lafw --config samplerate=1000000 --channels D0 --samples 2000000 --wait-trigger --triggers D0=f -P onewire_link,onewire_network,ds18b20 | grep Temperature  
 ds18b20-1: Temperature: 22.5000°C, TH: 32, TL: -1, Resolution: 9 bits  
-ds18b20-1: Temperature: 22.0000°C, TH: 75, TL: 70, Resolution: 12 bits  
+ds18b20-1: Temperature: 22.0000°C, TH: 75, TL: 70, Resolution: 12 bits * 
 
 Dumps are provided in the dumps folder.  
 The dumps are saved PulseView captures (*sr files) and can be open in PulseView (open file)  
