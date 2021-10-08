@@ -59,4 +59,4 @@ Here under a screenshot of a portion of the capture:
 with the 3 decoders stacked (1wire link layer, 1wire network layer, ds18b20):  
 
  
- <img src="https://github.com/villeneuve/libsigrokdecode-ds18b20/blob/main/dumps/ds18s20_GetTemperature/Screenshot%202021-10-07%2017.15.42.png">
+ <img src="https://github.com/villeneuve/libsigrokdecode-ds18b20/blob/main/screenshots/Screenshot%202021-10-07%2017.15.42.png">
