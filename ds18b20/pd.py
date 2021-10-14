@@ -55,12 +55,13 @@ class Decoder(srd.Decoder):
     id = 'ds18b20'
     name = 'DS18B20'
     longname = 'Maxim DS18B20 Programmable Resolution 1-Wire Digital Thermometer'
-    desc = '1-Wire digital thermometer with Sequence Detect and PIO.'
-    license = 'gplv2+'
+    desc = '1-Wire digital thermometers.'
+    license = 'gplv3+'
     inputs = ['onewire_network']
-    outputs = ['ds18b20']
+    outputs = []
+    tags = ['IC', 'Sensor']
     annotations = (
-        ('text', 'Human-readable text'),
+        ('text', 'Text'),
     )
 
     def __init__(self):
