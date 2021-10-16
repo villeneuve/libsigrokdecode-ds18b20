@@ -36,3 +36,4 @@ In each folder the README.md is explaining hardware, software and the result
 
 To use this decoder just copy the ds18b20 folder and its content in your folder /usr/share/libsigrokdecode/decoders/ (root owner and group)  
 And restart PulseView  
+Or if using PulseView AppImage copy it in ~/.local/share/libsigrokdecode/decoders/
